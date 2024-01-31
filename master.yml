@@ -1,0 +1,17 @@
+---
+
+- name: Update the instance and create a test file
+  hosts: all
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Update the instance
+      yum:
+        state: latest
+        update_cache: yes
+
+    - name: Create a test file with content
+      copy:
+        content: "This is a test file"
+        dest: /home/ec2-user/test.txt
