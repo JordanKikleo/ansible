@@ -3,7 +3,7 @@
 - name: Update the instance and create a test file
   hosts: all
   become: yes
-  become_user: root
+  become_user: ec2-user
 
   tasks:
     - name: Exécuter une commande shell
