@@ -1,0 +1,15 @@
+---
+
+- name: Update the instance and create a test file
+  hosts: all
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Exécuter une commande shell
+      shell: ssh 172.31.37.142 'echo "Hello World" > /home/ec2-user/helloworld.txt'
+      register: resultat_commande
+
+    - name: Afficher la sortie de la commande
+      debug:
+        var: resultat_commande.stdout_lines
