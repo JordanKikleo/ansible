@@ -8,7 +8,7 @@
   tasks:
     - name: Copy shell folder to remote server
       copy:
-        src: ansible/configure_device
+        src: ./configure_device
         dest: /home/ec2-user
         mode: '0755'
 
