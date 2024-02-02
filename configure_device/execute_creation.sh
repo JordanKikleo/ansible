@@ -23,13 +23,12 @@ echo "device_port = '$device_port'" >> $FILE_NAME
 echo "device_type = '$device_type'" >> $FILE_NAME
 
 python3 configure_thingsboard_and_mongo.py
-scp $PORT modify_config.py ec2-user@ec2-13-36-169-202.eu-west-3.compute.amazonaws.com:/tmp/
+scp modify_config.py ec2-user@$PORT:/tmp/
 ssh $PORT "python3 /tmp/modify_config.py $device_name $restaurant_name $device_port $device_type"
 
 python3 create_device_config.py
-scp $PORT deviceConfig.json ec2-user@ec2-13-36-169-202.eu-west-3.compute.amazonaws.com:/home/ec2-user/deviceConfig.json
+scp deviceConfig.json ec2-user@$PORT:/home/ec2-user/deviceConfig.json
 echo "deviceConfig.json file created, now rebooting"
-ssh $PORT "sudo -s reboot now"
 
 rm $FILE_NAME
 rm deviceConfig.json
