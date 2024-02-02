@@ -29,6 +29,7 @@ ssh $PORT "python3 /tmp/modify_config.py $device_name $restaurant_name $device_p
 python3 create_device_config.py
 scp deviceConfig.json ec2-user@$PORT:/home/ec2-user/deviceConfig.json
 echo "deviceConfig.json file created, now rebooting"
+ssh $PORT "sudo -s reboot now"
 
 rm $FILE_NAME
 rm deviceConfig.json
