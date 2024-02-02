@@ -1,0 +1,23 @@
+---
+
+- name: Update the instance and create a test file
+  hosts: all
+  become: yes
+  become_user: ec2-user
+
+  tasks:
+    - name: Copy shell folder to remote server
+      copy:
+        src: /configure_device
+        dest: /home/ec2-user
+        mode: '0755'
+
+    - name: Run shell script on remote server
+      shell: bash -e /home/ec2-user/configure_device/execute_creation.sh {{ PORT }} {{ device_name }} {{ restaurant_name }} {{ device_port }} {{ device_type }}
+      args:
+        chdir: /home/ec2-user/configure_device/
+
+    - name: Supprimer le dossier sur le master
+      file:
+        path: /home/ec2-user/configure_device
+        state: absent
