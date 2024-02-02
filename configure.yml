@@ -13,7 +13,7 @@
         mode: '0755'
 
     - name: Run shell script on remote server
-      shell: bash -e /home/ec2-user/configure_device/execute_creation.sh {{ PORT }} {{ device_name }} {{ restaurant_name }} {{ device_port }} {{ device_type }}
+      shell: bash -e /home/ec2-user/configure_device/execute_creation.sh {{ port }} {{ device_name }} {{ restaurant_name }} {{ device_port }} {{ device_type }}
       args:
         chdir: /home/ec2-user/configure_device/
 
